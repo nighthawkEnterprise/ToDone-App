@@ -1,6 +1,8 @@
 "use client";
 
 import { Section, Block, Link } from "@/devlink/_Builtin";
+import { Navigation } from "../devlink/"; // Import the Navbar component
+import { Footer } from "@/devlink/"; // Import the Footer component
 
 export default function Home() {
   return (
@@ -14,6 +16,13 @@ export default function Home() {
       }}
     >
       <Block tag="div" className="container">
+      {/* Add Nav Bar with props*/}
+        <Navigation
+          navbarLinkFeatures="Hello"
+          navbarLinkProducts="Webflow"
+          navbarLinkResources="Cloud"
+          navbarLinkContact=""
+        /> 
         <Block
           tag="div"
           className="hero-split"
@@ -51,7 +60,9 @@ export default function Home() {
             </Link>
           </div>
         </Block>
+        <Footer /> {/* Add Footer */}
       </Block>
     </Section>
   );
 }
+
