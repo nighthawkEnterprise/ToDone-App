@@ -1,8 +1,33 @@
 "use client";
 
-import { Section, Block, Link } from "@/devlink/_Builtin";
+import { useState, type FormEvent } from "react";
+import {
+  Section,
+  Block,
+  List,
+  ListItem,
+  Link,
+  FormWrapper,
+  FormForm,
+  FormTextInput,
+  FormButton,
+} from "@/devlink/_Builtin";
 
 export default function Home() {
+  const [items, setItems] = useState<string[]>([]);
+  const [text, setText] = useState("");
+
+  const addItem = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!text.trim()) return;
+    setItems([...items, text.trim()]);
+    setText("");
+  };
+
+  const removeItem = (index: number) => {
+    setItems(items.filter((_, i) => i !== index));
+  };
+
   return (
     <Section
       tag="section"
@@ -13,44 +38,49 @@ export default function Home() {
         justifyContent: "center",
       }}
     >
-      <Block tag="div" className="container">
-        <Block
-          tag="div"
-          className="hero-split"
-          style={{
-            textAlign: "center",
-            maxWidth: "600px",
-            margin: "0 auto",
-          }}
+      <Block tag="div" className="container" style={{ maxWidth: "600px", width: "100%" }}>
+        <h1
+          className="margin-bottom-24px"
+          style={{ fontSize: "2rem", textAlign: "center" }}
         >
-          <h1
-            className="margin-bottom-24px"
-            style={{
-              fontSize: "2.5rem",
-              fontWeight: 700,
-              background: "linear-gradient(83.21deg, #3245ff 0%, #bc52ee 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}
-          >
-            Welcome to Webflow Cloud
-          </h1>
-          <Block tag="p" className="margin-bottom-24px">
-            This is a simple test using Basic components with enhanced styling.
-          </Block>
-          <div>
-            <Link
-              button={true}
-              options={{
-                href: "#",
+          Todo List
+        </h1>
+        <FormWrapper onSubmit={addItem}>
+          <FormForm style={{ display: "flex", gap: "0.5rem" }}>
+            <FormTextInput
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              placeholder="Add a new task"
+              style={{ flexGrow: 1 }}
+            />
+            <FormButton value="Add" />
+          </FormForm>
+        </FormWrapper>
+        <List tag="ul" unstyled style={{ marginTop: "1rem" }}>
+          {items.map((item, index) => (
+            <ListItem
+              key={index}
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                marginBottom: "0.5rem",
               }}
-              className="button-primary"
             >
-              Get Started
-            </Link>
-          </div>
-        </Block>
+              <Block tag="span">{item}</Block>
+              <Link
+                button
+                options={{ href: "#" }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  removeItem(index);
+                }}
+              >
+                Delete
+              </Link>
+            </ListItem>
+          ))}
+        </List>
       </Block>
     </Section>
   );
