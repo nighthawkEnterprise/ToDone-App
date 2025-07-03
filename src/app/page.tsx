@@ -7,7 +7,7 @@ import {
   List,
   ListItem,
   Link,
-  FormWrapper,
+  Heading,
   FormForm,
   FormTextInput,
   FormButton,
@@ -39,14 +39,14 @@ export default function Home() {
       }}
     >
       <Block tag="div" className="container" style={{ maxWidth: "600px", width: "100%" }}>
-        <h1
+        <Heading
+          tag="h1"
           className="margin-bottom-24px"
           style={{ fontSize: "2rem", textAlign: "center" }}
         >
           Todo List
-        </h1>
-        <FormWrapper onSubmit={addItem}>
-          <FormForm style={{ display: "flex", gap: "0.5rem" }}>
+        </Heading>
+        <FormForm onSubmit={addItem} style={{ display: "flex", gap: "0.5rem" }}>
             <FormTextInput
               value={text}
               onChange={(e) => setText(e.target.value)}
@@ -54,8 +54,7 @@ export default function Home() {
               style={{ flexGrow: 1 }}
             />
             <FormButton value="Add" />
-          </FormForm>
-        </FormWrapper>
+        </FormForm>
         <List tag="ul" unstyled style={{ marginTop: "1rem" }}>
           {items.map((item, index) => (
             <ListItem
