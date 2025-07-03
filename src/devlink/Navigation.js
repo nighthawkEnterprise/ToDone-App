@@ -4,7 +4,13 @@ import * as _Builtin from "./_Builtin";
 import * as _utils from "./utils";
 import _styles from "./Navigation.module.css";
 
-export function Navigation({ as: _Component = _Builtin.Block }) {
+export function Navigation({
+  as: _Component = _Builtin.Block,
+  navbarLinkFeatures = "Features",
+  navbarLinkProducts = "Products",
+  navbarLinkResources = "Resources",
+  navbarLinkContact = "Contact",
+}) {
   return (
     <_Component className={_utils.cx(_styles, "nav", "inverse-nav")} tag="div">
       <_Builtin.NavbarWrapper
@@ -117,7 +123,7 @@ export function Navigation({ as: _Component = _Builtin.Block }) {
                     )}
                     tag="div"
                   >
-                    <_Builtin.Block tag="div">{"Features"}</_Builtin.Block>
+                    <_Builtin.Block tag="div">{navbarLinkFeatures}</_Builtin.Block>
                     <_Builtin.Icon
                       className={_utils.cx(_styles, "nav-caret")}
                       widget={{
@@ -1114,7 +1120,7 @@ export function Navigation({ as: _Component = _Builtin.Block }) {
                               className={_utils.cx(_styles, "button-label")}
                               tag="div"
                             >
-                              {"Contact"}
+                              {navbarLinkContact}
                             </_Builtin.Block>
                           </_Builtin.Link>
                         </_Builtin.ListItem>
