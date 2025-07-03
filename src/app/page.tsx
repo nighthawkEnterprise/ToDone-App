@@ -49,10 +49,11 @@ export default function Home() {
           <FormForm style={{ display: "flex", gap: "0.5rem" }}>
             <FormTextInput
               value={text}
-              onChange={(e) => setText(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setText(e.target.value)}
               placeholder="Add a new task"
               style={{ flexGrow: 1 }}
             />
+
             <FormButton value="Add" />
           </FormForm>
         </FormWrapper>
