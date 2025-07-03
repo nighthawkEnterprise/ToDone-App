@@ -4,7 +4,7 @@ import * as _Builtin from "./_Builtin";
 import * as _utils from "./utils";
 import _styles from "./Navigation.module.css";
 
-export function Navigation({
+export function Navbar({
   as: _Component = _Builtin.Block,
   navbarLinkFeatures = "Features",
   navbarLinkProducts = "Products",
